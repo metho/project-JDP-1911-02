@@ -2,20 +2,21 @@ package com.kodilla.ecommercee;
 
 import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.domain.CartDto;
-import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.mapper.CartMapper;
 import com.kodilla.ecommercee.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 @RestController
 @RequestMapping("v1/cart")
 public class CartController {
     @Autowired
-    CartService cartService;
+    private CartService cartService;
 
     @Autowired
-    CartMapper cartMapper;
+    private CartMapper cartMapper;
 
     @RequestMapping(method = RequestMethod.GET, value="createEmptyCart")
     public Cart createEmptyCart(){
@@ -23,17 +24,17 @@ public class CartController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value="getCartById")
-    public Cart getCartById(@RequestParam Long cartId){
-        return cartService.findById(cartId).orElse(null);
+    public CartDto getCartById(@RequestParam Long cartId){
+        return cartMapper.mapToCartDto(Objects.requireNonNull(cartService.findById(cartId).orElse(null)));
     }
 
     @RequestMapping(method = RequestMethod.PUT, value="addProductToCart")
     public void addProductToCart(@RequestBody CartDto cartDto){
-        cartService.save(cartMapper.mapToTask(cartDto));
+        cartService.save(cartMapper.mapToCart(cartDto));
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value="deleteProductFromCart")
-    public void deleteProductFromCart(@RequestBody Product product){
-        cartService.deleteProductFromCart(product);
+    public void deleteProductFromCart(@RequestParam Long cartId, @RequestParam Long productId){
+        cartService.deleteProductFromCart(cartId, productId);
     }
 }
