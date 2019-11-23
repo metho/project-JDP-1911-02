@@ -28,7 +28,7 @@ public class CartService {
         if(cart != null){
             Map<ProductDto, Integer> products = cart.getProducts();
 
-            for(Map.Entry<ProductDto, Integer> entry: products.entrySet()){
+            for(Map.Entry<ProductDto, Integer> entry: cart.getProducts().entrySet()){
                 if(entry.getKey().getId() == productId){
                     products.remove(entry.getKey());
                 }
