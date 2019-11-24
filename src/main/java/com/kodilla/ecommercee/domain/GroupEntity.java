@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashMap;
+import java.util.Map;
 
 @Getter
 @NoArgsConstructor
@@ -19,4 +21,6 @@ public class GroupEntity {
     @Column(name = "id")
     private long id;
 
+    @Column (name="productGroup")
+    private Map<Product, Integer> products  = new HashMap<>();
 }
