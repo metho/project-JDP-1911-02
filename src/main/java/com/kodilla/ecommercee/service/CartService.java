@@ -23,7 +23,7 @@ public class CartService {
     }
 
     public void deleteProductFromCart(Long cartId, Long productId){
-        Cart cart = findById(cartId).orElse(null);
+        Cart cart = findById(cartId).orElseThrow(() -> new IllegalArgumentException("Not found"));
 
         if(cart != null){
             Map<ProductDto, Integer> products = cart.getProducts();

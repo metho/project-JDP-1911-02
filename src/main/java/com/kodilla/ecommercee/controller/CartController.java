@@ -1,9 +1,11 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.domain.CartDto;
 import com.kodilla.ecommercee.mapper.CartMapper;
 import com.kodilla.ecommercee.service.CartService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,23 +20,28 @@ public class CartController {
     @Autowired
     private CartMapper cartMapper;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public Cart createEmptyCart(){
         return new Cart();
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public CartDto getCartById(@RequestParam Long cartId){
         return cartMapper.mapToCartDto(Objects.requireNonNull(cartService.findById(cartId).orElse(null)));
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value="addProductToCart")
+    @PutMapping(value="addProductToCart")
     public void addProductToCart(@RequestBody CartDto cartDto){
         cartService.save(cartMapper.mapToCart(cartDto));
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value="deleteProductFromCart")
+    @DeleteMapping(value="deleteProductFromCart")
     public void deleteProductFromCart(@RequestParam Long cartId, @RequestParam Long productId){
-        cartService.deleteProductFromCart(cartId, productId);
+        try{
+            cartService.deleteProductFromCart(cartId, productId);
+        } catch (IllegalArgumentException e){
+            final Logger LOGGER = LoggerFactory.getLogger(getClass());
+            LOGGER.error("Error: "+e);
+        }
     }
 }
