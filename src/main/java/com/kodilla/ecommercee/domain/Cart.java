@@ -13,11 +13,14 @@ import java.util.Map;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name = "Cart")
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name ="CART")
     private Long id;
 
     @ElementCollection
@@ -26,6 +29,4 @@ public class Cart {
     @MapKeyColumn(name = "product")
     @Column(name = "count")
     private Map<ProductDto, Integer> products = new HashMap<>();
-
-    //UPEWNIĆ SIĘ
 }
