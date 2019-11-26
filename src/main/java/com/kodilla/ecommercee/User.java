@@ -16,32 +16,20 @@ public class User {
 
     @Id
     @GeneratedValue
-    @Column(unique = true)
     private Long id;
-
-    @Column
     private String firstname;
-
-    @Column
     private String lastname;
-
-    @Column
     private String address;
-
-    @Column
     private Integer postcode;
 
-    @OneToOne (fetch = FetchType.EAGER)
-    @JoinColumn(name = "Cart_id")
+    @OneToOne
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
     @OneToMany (
-            targetEntity = UserOrder.class,
             mappedBy = "user",
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
+            fetch = FetchType.LAZY
     )
     private List<UserOrder> order = new ArrayList<>();
-
-
 }

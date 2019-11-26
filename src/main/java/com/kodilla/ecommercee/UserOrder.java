@@ -14,10 +14,9 @@ public class UserOrder {
 
     @Id
     @GeneratedValue
-    @Column(unique = true)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "User_id")
+    @JoinColumn(name = "user_id")
     private User user;
 }
