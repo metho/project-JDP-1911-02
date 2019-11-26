@@ -25,18 +25,16 @@ public class CartService {
     public void deleteProductFromCart(Long cartId, Long productId){
         Cart cart = findById(cartId).orElseThrow(() -> new IllegalArgumentException("Not found"));
 
-        if(cart != null){
-            Map<ProductDto, Integer> products = cart.getProducts();
+        Map<ProductDto, Integer> products = cart.getProducts();
 
-            for(Map.Entry<ProductDto, Integer> entry: cart.getProducts().entrySet()){
-                if(entry.getKey().getId() == productId){
-                    products.remove(entry.getKey());
-                }
+        for(Map.Entry<ProductDto, Integer> entry: cart.getProducts().entrySet()){
+            if(entry.getKey().getId() == productId){
+                products.remove(entry.getKey());
             }
-
-            cart.setProducts(products);
-
-            save(cart);
         }
+
+        cart.setProducts(products);
+
+        save(cart);
     }
 }
