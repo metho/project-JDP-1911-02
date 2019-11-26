@@ -3,13 +3,16 @@ package com.kodilla.ecommercee.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
+import lombok.Setter;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "Group")
@@ -17,10 +20,8 @@ public class GroupEntity {
 
     @Id
     @NotNull
-    @GeneratedValue (strategy= GenerationType.AUTO)
-    @Column(name = "id")
+    @GeneratedValue
     private long id;
 
-    @Column (name="productGroup")
     private Map<Product, Integer> products  = new HashMap<>();
 }
