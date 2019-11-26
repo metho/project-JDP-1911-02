@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
 
-
 @org.springframework.stereotype.Service
 
 public class ProductService {
@@ -23,7 +22,7 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
-    public Product saveTask(final Product product) {
+    public Product saveProduct(final Product product) {
         return productRepository.save(product);
     }
 
