@@ -21,7 +21,6 @@ public class CartService {
     public Optional<Cart> findById(Long id){
         return repository.findById(id);
     }
-
     public void deleteProductFromCart(Long cartId, Long productId){
         Cart cart = findById(cartId).orElseThrow(() -> new IllegalArgumentException("Not found"));
 
