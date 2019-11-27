@@ -26,5 +26,5 @@ public class Cart {
         joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")})
     @MapKeyColumn(name = "product")
     @Column(name = "count")
-    private Map<ProductDto, Integer> products = new HashMap<>();
+    private Map<Product, Integer> products = new HashMap<>();
 }
