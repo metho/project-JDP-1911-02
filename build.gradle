@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
+        }
 }
 
 apply plugin: 'java'
@@ -29,6 +29,7 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     runtimeOnly('com.h2database:h2')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
-    compile 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
+    compile('mysql:mysql-connector-java')
+    compileOnly('org.projectlombok:lombok:1.18.8')
+    annotationProcessor('org.projectlombok:lombok:1.18.8')
 }
