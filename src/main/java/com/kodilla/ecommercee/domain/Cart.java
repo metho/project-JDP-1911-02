@@ -13,7 +13,7 @@ import java.util.Map;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Cart")
+@Entity
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,7 +25,7 @@ public class Cart {
         joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")})
     @MapKeyColumn(name = "product")
     @Column(name = "count")
-    private Map<ProductDto, Integer> products = new HashMap<>();
+    private Map<Product, Integer> products = new HashMap<>();
 
     //UPEWNIĆ SIĘ
 }

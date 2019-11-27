@@ -1,7 +1,7 @@
 package com.kodilla.ecommercee.service;
 
 import com.kodilla.ecommercee.domain.Cart;
-import com.kodilla.ecommercee.domain.ProductDto;
+import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,9 +26,9 @@ public class CartService {
         Cart cart = findById(cartId).orElseThrow(() -> new IllegalArgumentException("Not found"));
 
         if(cart != null){
-            Map<ProductDto, Integer> products = cart.getProducts();
+            Map<Product, Integer> products = cart.getProducts();
 
-            for(Map.Entry<ProductDto, Integer> entry: cart.getProducts().entrySet()){
+            for(Map.Entry<Product, Integer> entry: cart.getProducts().entrySet()){
                 if(entry.getKey().getId() == productId){
                     products.remove(entry.getKey());
                 }
