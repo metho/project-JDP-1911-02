@@ -21,13 +21,17 @@ public class CartController {
     private CartMapper cartMapper;
 
     @GetMapping
-    public Cart createEmptyCart(){
-        return new Cart();
+    public Cart createEmptyCart() {
+        return cartService.getNewCart();
     }
 
     @GetMapping(value="getById")
-    public CartDto getCartById(@RequestParam Long cartId){
-        return cartMapper.mapToCartDto(Objects.requireNonNull(cartService.findById(cartId).orElse(null)));
+    public CartDto getCartById(@RequestParam Long cartId) {
+        return cartMapper.mapToCartDto(
+                Objects.requireNonNull(
+                        cartService.findById(cartId).orElse(null)
+                )
+        );
     }
 
     @PutMapping(value="addProductToCart")
@@ -36,7 +40,7 @@ public class CartController {
     }
 
     @DeleteMapping(value="deleteProductFromCart")
-    public void deleteProductFromCart(@RequestParam Long cartId, @RequestParam Long productId){
+    public void deleteProductFromCart(@RequestParam Long cartId, @RequestParam Long productId) {
         try{
             cartService.deleteProductFromCart(cartId, productId);
         } catch (IllegalArgumentException e){

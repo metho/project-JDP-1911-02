@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CartMapper {
-    public Cart mapToCart(CartDto cartDto){
+    public Cart mapToCart(CartDto cartDto) {
         return new Cart(cartDto.getId(), cartDto.getProducts());
     }
     public CartDto mapToCartDto(Cart cart){

@@ -17,7 +17,6 @@ import java.util.Map;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
     @JoinColumn(name ="CART")
     private Long id;
 
