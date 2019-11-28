@@ -27,16 +27,12 @@ public class GroupController {
     public GroupDto getGroup (Long groupId){
         return groupMapper.mapToGroupDto(service.getGroupById(groupId));
     }
-    @GetMapping
+    @DeleteMapping
     public void deleteGroup (Long groupId){
         service.deleteById(groupId);
     }
-    @GetMapping
-    public GroupDto updateTask (@RequestBody GroupDto groupDto){
-        return groupMapper.mapToGroupDto(service.saveTask(groupMapper.mapToGroup(groupDto)));
-    }
-    @GetMapping
-    public void createTask (@RequestBody GroupDto groupDto) {
+    @PostMapping
+    public void createGroup (@RequestBody GroupDto groupDto) {
         service.saveTask(groupMapper.mapToGroup(groupDto));
     }
 
