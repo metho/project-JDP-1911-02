@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import java.util.Map;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Entity
 public class Cart {
     @Id
@@ -25,27 +27,4 @@ public class Cart {
     @MapKeyColumn(name = "product")
     @Column(name = "count")
     private Map<Product, Integer> products = new HashMap<>();
-
-    public Map<Product, Integer> getProducts(){
-        return products;
-    }
-
-    public Long getId(){
-        return id;
-    }
-
-    public Cart(Long id, Map<Product, Integer> products) {
-        this.id = id;
-        this.products = products;
-    }
-
-    public Cart(){}
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setProducts(Map<Product, Integer> products) {
-        this.products = products;
-    }
 }
