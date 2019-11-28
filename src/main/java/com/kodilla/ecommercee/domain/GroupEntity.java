@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,5 +25,5 @@ public class GroupEntity {
     @GeneratedValue
     private long id;
 
-    private Map<Product, Integer> products  = new HashMap<>();
+    private String productGroup;
 }

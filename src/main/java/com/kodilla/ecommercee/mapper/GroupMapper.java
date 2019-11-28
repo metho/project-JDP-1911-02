@@ -11,19 +11,19 @@ public class GroupMapper {
     public GroupEntity mapToGroup (final GroupDto groupDto) {
         return new GroupEntity(
                 groupDto.getId(),
-                groupDto.getProducts()
+                groupDto.getProductGroup()
         );
     }
     public GroupDto mapToGroupDto (final GroupEntity groupEntity) {
         return new GroupDto(
                 groupEntity.getId(),
-                groupEntity.getProducts()
+                groupEntity.getProductGroup()
         );
     }
     public List<GroupDto> mapToGroupDtoList(final List<GroupEntity> groupEntityList) {
         System.out.println(groupEntityList);
         return groupEntityList.stream()
-                .map(t->new GroupDto(t.getId(), t.getProducts()))
+                .map(t->new GroupDto(t.getId(), t.getProductGroup()))
                 .collect(Collectors.toList());
     }
 }

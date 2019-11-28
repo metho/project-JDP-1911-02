@@ -20,7 +20,7 @@ public class GroupController {
     private GroupMapper groupMapper;
 
     @GetMapping
-    public List<GroupDto> getGroups() {
+    public List<GroupDto> getGroupList () {
         return groupMapper.mapToGroupDtoList(service.getAllGroups());
     }
     @GetMapping
@@ -35,5 +35,8 @@ public class GroupController {
     public void createGroup (@RequestBody GroupDto groupDto) {
         service.saveTask(groupMapper.mapToGroup(groupDto));
     }
-
+    @PutMapping
+    public GroupDto updateTask (@RequestBody GroupDto groupDto){
+        return groupMapper.mapToGroupDto(service.saveTask(groupMapper.mapToGroup(groupDto)));
+    }
 }

@@ -11,5 +11,5 @@ import java.util.Map;
 @AllArgsConstructor
 public class GroupDto {
     private Long id;
-    private Map<Product, Integer> products;
+    private String productGroup;
 }
