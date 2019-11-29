@@ -17,7 +17,7 @@ import java.util.Map;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Group")
+@Entity(name = "ProductGroup")
 public class GroupEntity {
 
     @Id

@@ -19,7 +19,7 @@ public class GroupController {
     @Autowired
     private GroupMapper groupMapper;
 
-    @GetMapping
+    @RequestMapping (value = "v1/group/getGroupList", method = RequestMethod.GET)
     public List<GroupDto> getGroupList () {
         return groupMapper.mapToGroupDtoList(service.getAllGroups());
     }
