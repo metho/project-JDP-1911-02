@@ -10,7 +10,7 @@ public class UserController {
 
     @PostMapping(value = "create", consumes = APPLICATION_JSON_VALUE)
     public void createUser(UserDto userDto) {
-        userDto = new UserDto(1L,"user","password");
+        userDto = new UserDto(1L,"user","password", "Elm Street",32333);
     }
 
     @PutMapping(value = "block")
