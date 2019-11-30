@@ -16,6 +16,10 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("v1/product")
 public class ProductController {
 
+    public ProductController(){
+
+    }
+
     @Autowired
     private ProductService service;
     @Autowired
@@ -27,23 +31,23 @@ public class ProductController {
         return new ArrayList<>();
     }
 
-    @GetMapping
-    public ProductDto getProduct(@RequestParam Long productId) {
+  @GetMapping("/(productId}")
+    public ProductDto getProduct(@PathVariable Long productId) {
         return new ProductDto(1L, "pants", 100);
     }
 
-    @PostMapping(value = "create", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public void createProduct(@RequestBody ProductDto productDto) {
         productDto = new ProductDto(1L, "pants", 100);
     }
 
-    @PutMapping(value = "update")
+    @PutMapping
     public ProductDto updateProduct(@RequestBody ProductDto productDto) {
         return productDto = new ProductDto(1L, "pants", 150);
     }
 
-    @DeleteMapping(value = "delete")
-    public void deleteProduct(@RequestParam Long productId) {
+    @DeleteMapping
+    public void deleteProduct(@PathVariable Long productId) {
         service.deleteProduct(productId);
     }
 }
