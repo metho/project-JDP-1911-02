@@ -34,12 +34,12 @@ public class CartController {
         );
     }
 
-    @PutMapping(value="addProductToCart")
+    @PutMapping
     public void addProductToCart(@RequestBody CartDto cartDto){
         cartService.save(cartMapper.mapToCart(cartDto));
     }
 
-    @DeleteMapping(value="deleteProductFromCart")
+    @DeleteMapping
     public void deleteProductFromCart(@RequestParam Long cartId, @RequestParam Long productId) {
         try{
             cartService.deleteProductFromCart(cartId, productId);

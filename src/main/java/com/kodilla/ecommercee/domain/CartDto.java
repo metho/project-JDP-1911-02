@@ -15,5 +15,5 @@ import java.util.Map;
 @Setter
 public class CartDto {
     private Long id;
-    Map<Product, Integer> products = new HashMap<>();
+    private Map<Product, Integer> products = new HashMap<>();
 }
