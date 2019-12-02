@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.domain.CartDto;
 import com.kodilla.ecommercee.mapper.CartMapper;
 import com.kodilla.ecommercee.service.CartService;
@@ -21,8 +20,8 @@ public class CartController {
     private CartMapper cartMapper;
 
     @GetMapping
-    public Cart createEmptyCart() {
-        return cartService.getNewCart();
+    public CartDto createEmptyCart() {
+        return new CartDto();
     }
 
     @GetMapping(value="getById")

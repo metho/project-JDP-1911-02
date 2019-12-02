@@ -18,10 +18,6 @@ public class CartService {
         repository.save(cart);
     }
 
-    public Cart getNewCart(){
-        return new Cart();
-    }
-
     public Optional<Cart> findById(Long id){
         return repository.findById(id);
     }
