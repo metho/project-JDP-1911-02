@@ -19,12 +19,12 @@ public class GroupController {
     @Autowired
     private GroupMapper groupMapper;
 
-    @RequestMapping (value = "v1/group/getGroupList", method = RequestMethod.GET)
-    public List<GroupDto> getGroupList () {
+    @GetMapping
+    public List<GroupDto> getAllGroups () {
         return groupMapper.mapToGroupDtoList(service.getAllGroups());
     }
-    @GetMapping
-    public GroupDto getGroup (Long groupId){
+    @GetMapping ("/{groupId}")
+    public GroupDto getGroupById (@PathVariable Long groupId){
         return groupMapper.mapToGroupDto(service.getGroupById(groupId));
     }
     @DeleteMapping
