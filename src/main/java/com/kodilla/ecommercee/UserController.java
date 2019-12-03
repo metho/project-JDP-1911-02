@@ -1,5 +1,6 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.UserDto;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -22,4 +23,5 @@ public class UserController {
     public String generateToken(Long userId) {
         return "abc";
     }
+
 }
