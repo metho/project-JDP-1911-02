@@ -12,4 +12,5 @@ public class UserDto {
     private String password;
     private String address;
     private Integer postcode;
+    private boolean blocked;
 }

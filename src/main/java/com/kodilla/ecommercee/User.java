@@ -21,6 +21,7 @@ public class User {
     private String lastname;
     private String address;
     private Integer postcode;
+    private boolean blocked;
 
     @OneToOne
     @JoinColumn(name = "cart_id")
