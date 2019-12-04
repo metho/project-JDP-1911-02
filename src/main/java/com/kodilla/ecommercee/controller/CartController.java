@@ -20,12 +20,12 @@ public class CartController {
     @Autowired
     private CartMapper cartMapper;
 
-    @RequestMapping(method = RequestMethod.HEAD)
+    @PostMapping
     public Cart createEmptyCart() {
         return new Cart();
     }
 
-    @GetMapping(value="getById")
+    @GetMapping
     public CartDto getCartById(@RequestParam Long cartId) {
         return cartMapper.mapToCartDto(
                 Objects.requireNonNull(
