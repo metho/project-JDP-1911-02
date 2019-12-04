@@ -28,7 +28,7 @@ public class ProductController {
         return new ArrayList<>();
     }
 
-    @GetMapping("/(productId}")
+    @GetMapping("/{productId}")
     public ProductDto getProduct(@PathVariable Long productId) {
         return new ProductDto(1L, "pants", 100);
     }
