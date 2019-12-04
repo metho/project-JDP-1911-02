@@ -2,6 +2,7 @@ package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.GroupDto;
 import com.kodilla.ecommercee.domain.OrderDto;
+import com.kodilla.ecommercee.domain.OrderEntity;
 import com.kodilla.ecommercee.mapper.GroupMapper;
 import com.kodilla.ecommercee.mapper.OrderMapper;
 import com.kodilla.ecommercee.service.DbService;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("v1/order")
-@CrossOrigin("*")
+
 public class OrderController {
 
     @Autowired
@@ -23,23 +24,25 @@ public class OrderController {
     private OrderMapper orderMapper;
 
     @GetMapping
-    public List<OrderDto> getAllGroups () {
+    public List<OrderDto> getAllOrders () {
         return orderMapper.mapToOrderDtoList(service.getAllOrders());
     }
     @GetMapping ("/{orderId}")
-    public OrderDto getGroupById (@PathVariable Long orderId){
+    public OrderDto getOrderById (@PathVariable Long orderId){
         return orderMapper.mapToOrderDto(service.getOrderById(orderId));
     }
     @DeleteMapping
-    public void deleteGroup (Long orderId){
+    public void deleteOrder (Long orderId){
         service.deleteById(orderId);
     }
     @PostMapping
-    public void createGroup (@RequestBody OrderDto orderDto) {
+    public void createOrder (@RequestBody OrderDto orderDto) {
         service.saveOrder(orderMapper.mapToOrder(orderDto));
     }
     @PutMapping
-    public OrderDto updateTask (@RequestBody OrderDto groupDto){
-        return orderMapper.mapToOrderDto(service.saveOrder(orderMapper.mapToOrder(groupDto)));
+    public OrderDto updateOrder (@RequestBody OrderDto groupDto){
+        OrderEntity mapToOrderGroupDto = orderMapper.mapToOrder(groupDto);
+        OrderEntity saveOrder = service.saveOrder(mapToOrderGroupDto);
+        return orderMapper.mapToOrderDto(saveOrder);
     }
 }
