@@ -10,13 +10,15 @@ import java.util.stream.Collectors;
 @Component
 public class ProductMapper {
 
-        public Product mapToProduct(final ProductDto productDto) {
-            return new Product();
-        }
+    public Product mapToProduct(final ProductDto productDto) {
+        return new Product(productDto.getId(),
+                productDto.getName(),
+                productDto.getPrice());
+    }
 
-        public ProductDto mapToProductDto(final Product product) {
-            return new ProductDto();
-        }
-
-
+    public ProductDto mapToProductDto(final Product product) {
+        return new ProductDto(product.getId(),
+                product.getName(),
+                product.getPrice());
+    }
 }

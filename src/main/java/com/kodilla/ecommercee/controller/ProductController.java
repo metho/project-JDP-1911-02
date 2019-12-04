@@ -16,22 +16,19 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("v1/product")
 public class ProductController {
 
-    public ProductController(){
-
+    public ProductController() {
     }
-
     @Autowired
     private ProductService service;
     @Autowired
     private ProductMapper productMapper;
-
 
     @GetMapping
     public List<ProductDto> getProducts() {
         return new ArrayList<>();
     }
 
-  @GetMapping("/(productId}")
+    @GetMapping("/(productId}")
     public ProductDto getProduct(@PathVariable Long productId) {
         return new ProductDto(1L, "pants", 100);
     }
@@ -43,8 +40,7 @@ public class ProductController {
 
     @PutMapping
     public ProductDto updateProduct(@RequestBody ProductDto productDto) {
-        return productDto = new ProductDto(1L, "pants", 150);
-    }
+        return productDto = new ProductDto(1L, "pants", 150); }
 
     @DeleteMapping
     public void deleteProduct(@PathVariable Long productId) {
