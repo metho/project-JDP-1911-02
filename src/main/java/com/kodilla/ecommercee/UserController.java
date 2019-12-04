@@ -1,6 +1,5 @@
-package com.kodilla.ecommercee.controller;
+package com.kodilla.ecommercee;
 
-import com.kodilla.ecommercee.UserDto;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -11,7 +10,7 @@ public class UserController {
 
     @PostMapping(value = "create", consumes = APPLICATION_JSON_VALUE)
     public void createUser(UserDto userDto) {
-        userDto = new UserDto(1L,"user","password","Elm Street 21", 72400);
+        userDto = new UserDto(1L,"user","password");
     }
 
     @PutMapping(value = "block")
@@ -23,5 +22,4 @@ public class UserController {
     public String generateToken(Long userId) {
         return "abc";
     }
-
 }
