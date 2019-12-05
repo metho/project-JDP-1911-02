@@ -1,9 +1,5 @@
 package com.kodilla.ecommercee.controller;
 
-<<<<<<< HEAD
-public class ProductController {
-}
-=======
 import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.service.ProductService;
@@ -35,7 +31,7 @@ public class ProductController {
         return new ArrayList<>();
     }
 
-  @GetMapping("/(productId}")
+    @GetMapping("/(productId}")
     public ProductDto getProduct(@PathVariable Long productId) {
         return new ProductDto(1L, "pants", 100);
     }
@@ -55,9 +51,3 @@ public class ProductController {
         service.deleteProduct(productId);
     }
 }
-
-
-
-
-
->>>>>>> 3cba27154beeb784ee7f4678d8e1cb95fb80e2a7

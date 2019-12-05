@@ -1,8 +1,4 @@
-<<<<<<< HEAD:src/main/java/com/kodilla/ecommercee/entity/GenericEntity.java
-package com.kodilla.ecommercee.entity;
-=======
 package com.kodilla.ecommercee.domain;
->>>>>>> 3cba27154beeb784ee7f4678d8e1cb95fb80e2a7:src/main/java/com/kodilla/ecommercee/domain/GenericEntity.java
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
