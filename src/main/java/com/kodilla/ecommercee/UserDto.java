@@ -7,8 +7,9 @@ import lombok.Getter;
 @Getter
 public class UserDto {
 
-    private Long userId;
+    private Long id;
     private String username;
     private String password;
-
+    private String address;
+    private Integer postcode;
 }
