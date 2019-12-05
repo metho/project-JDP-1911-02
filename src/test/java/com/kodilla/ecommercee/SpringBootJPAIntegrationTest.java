@@ -1,12 +1,7 @@
 package com.kodilla.ecommercee;
 
-<<<<<<< HEAD
-import com.kodilla.ecommercee.entity.GenericEntity;
-import com.kodilla.ecommercee.entity.GenericEntityRepository;
-=======
 import com.kodilla.ecommercee.domain.GenericEntity;
 import com.kodilla.ecommercee.repository.GenericEntityRepository;
->>>>>>> 3cba27154beeb784ee7f4678d8e1cb95fb80e2a7
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
