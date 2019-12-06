@@ -40,6 +40,10 @@ public class User {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
+    @OneToOne
+    @JoinColumn(name = "token_id")
+    private UserToken userToken;
+
     @OneToMany (
             mappedBy = "user",
             cascade = CascadeType.ALL,
