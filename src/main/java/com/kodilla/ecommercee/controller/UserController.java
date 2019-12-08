@@ -3,11 +3,13 @@ package com.kodilla.ecommercee.controller;
 import com.kodilla.ecommercee.domain.User;
 import com.kodilla.ecommercee.domain.UserDto;
 import com.kodilla.ecommercee.mapper.UserMapper;
+import com.kodilla.ecommercee.service.InvalidLoginDetailsException;
 import com.kodilla.ecommercee.service.UserService;
 import com.kodilla.ecommercee.domain.UserToken;
 import com.kodilla.ecommercee.service.UserTokenService;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import org.omg.CORBA.DynAnyPackage.Invalid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Optionals;
 import org.springframework.web.bind.annotation.*;
@@ -39,16 +41,14 @@ public class UserController {
         mapper.mapToDto(service.saveUser(user.get()));
     }
 
-    @PutMapping
-    public void validateTokenOneHour(UserToken userToken) {
-        if (LocalDateTime.now().isBefore(userToken.getTokenCreated().plusMinutes(60))) {
-            Optional<User> user = service.findUser(userToken.getId());
-            user.ifPresent(theUser -> theUser.setBlocked(false));
-            mapper.mapToDto(service.saveUser(user.get()));
-
-                user.get().setBlocked(true);
-
-            }
+    @PutMapping(path = "{userId}/{password}")
+    public String requestToken(@PathVariable Long userId, @PathVariable String password) throws InvalidLoginDetailsException {
+        if (service.userExists(userId) && password.equals(service.findUser(userId).get().getPassword())) {
+            UserToken userToken = tokenService.generateToken(userId);
+            String token = userToken.getToken();
+            return token;
+        } else {
+            throw new InvalidLoginDetailsException();
         }
     }
-
+}

@@ -19,4 +19,8 @@ public class UserService {
     public Optional<User> findUser(Long userId) {
         return repository.findById(userId);
     }
+
+    public boolean userExists(Long userId) {
+        return repository.existsById(userId);
+    }
 }

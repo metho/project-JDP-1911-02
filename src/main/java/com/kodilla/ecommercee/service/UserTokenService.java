@@ -1,8 +1,7 @@
 package com.kodilla.ecommercee.service;
 
-import com.kodilla.ecommercee.domain.User;
 import com.kodilla.ecommercee.domain.UserToken;
-import com.kodilla.ecommercee.repository.UserRepository;
+import com.kodilla.ecommercee.repository.UserTokenRepository;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +11,12 @@ import org.springframework.stereotype.Service;
 public class UserTokenService {
 
     @Autowired
-    private UserRepository repository;
-    private User user;
+    private UserTokenRepository repository;
 
     public UserToken saveToken(UserToken token) {
         return repository.save(token);
     }
+
     public UserToken generateToken(Long userId) {
         SecureRandom random = new SecureRandom();
         byte bytes[] = new byte[20];
@@ -25,15 +24,15 @@ public class UserTokenService {
         String token = bytes.toString();
         LocalDateTime tokenCreated = LocalDateTime.now();
         LocalDateTime tokenExpired = LocalDateTime.now().plusMinutes(60);
-        UserToken userToken = new UserToken(userId,token,tokenCreated,tokenExpired);
-        return userToken;
+        UserToken userToken = new UserToken(userId, token, tokenCreated, tokenExpired);
+        return repository.save(userToken);
     }
 
-    public boolean validateToken(String username, String password, UserToken userToken)
+    public String validateToken(Long id, String password, UserToken userToken)
         throws InvalidLoginDetailsException, TokenExpiredException {
-        if(this.user.getUsername().equals(username) && this.user.getPassword().equals(password)) {
+        if(repository.existsById(id) && repository.findById(id).get().getUser().getPassword().equals(password)) {
             if(LocalDateTime.now().isBefore(userToken.getTokenExpired())) {
-                return true;
+                return userToken.getToken();
             } else { throw new TokenExpiredException();}
         } else { throw new InvalidLoginDetailsException();}
     }
