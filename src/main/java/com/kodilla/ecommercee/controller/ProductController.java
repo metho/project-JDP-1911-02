@@ -18,6 +18,7 @@ public class ProductController {
 
     public ProductController() {
     }
+
     @Autowired
     private ProductService service;
     @Autowired
@@ -29,9 +30,9 @@ public class ProductController {
     }
 
     @GetMapping("/{productId}")
-    public ProductDto getProduct(@PathVariable Long productId)throws ProductNotFoundException{
-        return productMapper.mapToProductDto(service.getProduct(productId).orElseThrow(ProductNotFoundException::new)); }
-
+    public ProductDto getProduct(@PathVariable Long productId) throws ProductNotFoundException {
+        return productMapper.mapToProductDto(service.getProduct(productId).orElseThrow(ProductNotFoundException::new));
+    }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public void createProduct(@RequestBody ProductDto productDto) {
@@ -40,12 +41,13 @@ public class ProductController {
 
     @PutMapping
     public ProductDto updateProduct(@RequestBody ProductDto productDto) {
-        return productMapper.mapToProductDto(service.saveProduct(productMapper.mapToProduct(productDto))); }
+        return productMapper.mapToProductDto(service.saveProduct(productMapper.mapToProduct(productDto)));
+    }
 
     @DeleteMapping
     public void deleteProduct(@PathVariable Long productId) {
         service.deleteProduct(productId);
     }
-}
 
+}
 
