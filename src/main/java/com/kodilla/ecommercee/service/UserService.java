@@ -23,4 +23,9 @@ public class UserService {
     public boolean userExists(Long userId) {
         return repository.existsById(userId);
     }
+
+    public boolean authenticated(Long userId, String password) {
+        boolean result = repository.existsById(userId) && password.equals(repository.findById(userId).get().getPassword());
+        return result;
+    }
 }

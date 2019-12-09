@@ -28,12 +28,21 @@ public class UserTokenService {
         return repository.save(userToken);
     }
 
-    public String validateToken(Long id, String password, UserToken userToken)
-        throws InvalidLoginDetailsException, TokenExpiredException {
-        if(repository.existsById(id) && repository.findById(id).get().getUser().getPassword().equals(password)) {
-            if(LocalDateTime.now().isBefore(userToken.getTokenExpired())) {
+    public String validateToken(Long userId, String password, UserToken userToken)
+            throws InvalidLoginDetailsException, TokenExpiredException {
+        if (authenticatedToken(userId, password)) {
+            if (LocalDateTime.now().isBefore(userToken.getTokenExpired())) {
                 return userToken.getToken();
-            } else { throw new TokenExpiredException();}
-        } else { throw new InvalidLoginDetailsException();}
+            } else {
+                throw new TokenExpiredException();
+            }
+        } else {
+            throw new InvalidLoginDetailsException();
+        }
+    }
+
+    public boolean authenticatedToken(Long userId, String password) {
+        boolean result = repository.existsById(userId) && password.equals(repository.findById(userId).get().getUser().getPassword());
+        return result;
     }
 }

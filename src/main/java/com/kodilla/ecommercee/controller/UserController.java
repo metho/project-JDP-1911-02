@@ -43,7 +43,7 @@ public class UserController {
 
     @PutMapping(path = "{userId}/{password}")
     public String requestToken(@PathVariable Long userId, @PathVariable String password) throws InvalidLoginDetailsException {
-        if (service.userExists(userId) && password.equals(service.findUser(userId).get().getPassword())) {
+        if (service.authenticated(userId, password)) {
             UserToken userToken = tokenService.generateToken(userId);
             String token = userToken.getToken();
             return token;
