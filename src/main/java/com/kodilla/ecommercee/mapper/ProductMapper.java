@@ -21,4 +21,10 @@ public class ProductMapper {
                 product.getName(),
                 product.getPrice());
     }
+
+    public List<ProductDto> mapToProductDtoList(final List<Product> productList) {
+        return productList.stream()
+                .map(this::mapToProductDto)
+                .collect(Collectors.toList());
+    }
 }

@@ -25,30 +25,27 @@ public class ProductController {
 
     @GetMapping
     public List<ProductDto> getProducts() {
-        return new ArrayList<>();
+        return productMapper.mapToProductDtoList(service.getAllProducts());
     }
 
     @GetMapping("/{productId}")
-    public ProductDto getProduct(@PathVariable Long productId) {
-        return new ProductDto(1L, "pants", 100);
-    }
+    public ProductDto getProduct(@PathVariable Long productId)throws ProductNotFoundException{
+        return productMapper.mapToProductDto(service.getProduct(productId).orElseThrow(ProductNotFoundException::new)); }
+
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public void createProduct(@RequestBody ProductDto productDto) {
-        productDto = new ProductDto(1L, "pants", 100);
+        service.saveProduct(productMapper.mapToProduct(productDto));
     }
 
     @PutMapping
     public ProductDto updateProduct(@RequestBody ProductDto productDto) {
-        return productDto = new ProductDto(1L, "pants", 150); }
+        return productMapper.mapToProductDto(service.saveProduct(productMapper.mapToProduct(productDto))); }
 
     @DeleteMapping
     public void deleteProduct(@PathVariable Long productId) {
         service.deleteProduct(productId);
     }
 }
-
-
-
 
 
