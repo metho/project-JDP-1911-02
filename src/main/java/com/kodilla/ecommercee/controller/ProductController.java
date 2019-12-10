@@ -16,8 +16,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("v1/product")
 public class ProductController {
 
-    public ProductController(){
-
+    public ProductController() {
     }
 
     @Autowired
@@ -25,29 +24,30 @@ public class ProductController {
     @Autowired
     private ProductMapper productMapper;
 
-
     @GetMapping
     public List<ProductDto> getProducts() {
-        return new ArrayList<>();
+        return productMapper.mapToProductDtoList(service.getAllProducts());
     }
 
-    @GetMapping("/(productId}")
-    public ProductDto getProduct(@PathVariable Long productId) {
-        return new ProductDto(1L, "pants", 100);
+    @GetMapping("/{productId}")
+    public ProductDto getProduct(@PathVariable Long productId) throws ProductNotFoundException {
+        return productMapper.mapToProductDto(service.getProduct(productId).orElseThrow(ProductNotFoundException::new));
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public void createProduct(@RequestBody ProductDto productDto) {
-        productDto = new ProductDto(1L, "pants", 100);
+        service.saveProduct(productMapper.mapToProduct(productDto));
     }
 
     @PutMapping
     public ProductDto updateProduct(@RequestBody ProductDto productDto) {
-        return productDto = new ProductDto(1L, "pants", 150);
+        return productMapper.mapToProductDto(service.saveProduct(productMapper.mapToProduct(productDto)));
     }
 
     @DeleteMapping
     public void deleteProduct(@PathVariable Long productId) {
         service.deleteProduct(productId);
     }
+
 }
+
