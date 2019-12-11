@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-import com.kodilla.ecommercee.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +18,5 @@ public class OrderDto {
     private int price;
     private List<Product> productList = new ArrayList<>();
     private User user;
+
 }
