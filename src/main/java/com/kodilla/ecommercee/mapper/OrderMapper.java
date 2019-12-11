@@ -8,29 +8,27 @@ import java.util.stream.Collectors;
 
 @Component
 public class OrderMapper {
-    public OrderEntity mapToOrder (final OrderDto orderDto) {
+    public OrderEntity mapToOrder(final OrderDto orderDto) {
         return new OrderEntity(
                 orderDto.getId(),
                 orderDto.getOrderNumber(),
                 orderDto.getProductGroup(),
                 orderDto.getPrice(),
                 orderDto.getProductList(),
-                orderDto.getUser()
-        );
+                orderDto.getUser());
     }
-    public OrderDto mapToOrderDto (final OrderEntity orderEntity) {
+    public OrderDto mapToOrderDto(final OrderEntity orderEntity) {
         return new OrderDto(
                 orderEntity.getId(),
                 orderEntity.getOrderNumber(),
                 orderEntity.getProductGroup(),
                 orderEntity.getPrice(),
                 orderEntity.getProductList(),
-                orderEntity.getUser()
-        );
+                orderEntity.getUser());
     }
     public List<OrderDto> mapToOrderDtoList(final List<OrderEntity> orderEntityList) {
         return orderEntityList.stream()
-                .map(t->new OrderDto(t.getId(), t.getOrderNumber(), t.getProductGroup(), t.getPrice(), t.getProductList(), t.getUser()))
+                .map(this::mapToOrderDto)
                 .collect(Collectors.toList());
     }
 }
