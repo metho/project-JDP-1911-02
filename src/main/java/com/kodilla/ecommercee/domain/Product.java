@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import javax.persistence.Column;
 
 @AllArgsConstructor
 @Setter
@@ -23,10 +22,8 @@ public class Product {
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column
     @NotNull
     private String name;
     @NotNull
-    @Column
     private int price;
 }
