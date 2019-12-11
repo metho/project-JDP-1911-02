@@ -13,16 +13,14 @@ public class ProductMapper {
     public Product mapToProduct(final ProductDto productDto) {
         return new Product(productDto.getId(),
                 productDto.getName(),
-                productDto.getPrice(),
-                productDto.getQuantity()
-                );
+                productDto.getPrice()
+        );
     }
 
     public ProductDto mapToProductDto(final Product product) {
         return new ProductDto(product.getId(),
                 product.getName(),
-                product.getPrice(),
-                product.getQuantity()
+                product.getPrice()
         );
     }
 
