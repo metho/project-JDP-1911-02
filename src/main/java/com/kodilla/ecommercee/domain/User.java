@@ -1,11 +1,16 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.domain;
 
-import com.kodilla.ecommercee.domain.Cart;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +27,7 @@ public class User {
     private String password;
     private String address;
     private Integer postcode;
+    private boolean blocked;
 
     public User(String username, String password, String address, Integer postcode) {
         this.username = username;
@@ -33,6 +39,13 @@ public class User {
     @OneToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
+
+    @OneToMany (
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<UserToken> tokenList;
 
     @OneToMany (
             mappedBy = "user",

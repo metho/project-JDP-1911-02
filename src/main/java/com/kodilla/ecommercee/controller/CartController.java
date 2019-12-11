@@ -21,8 +21,8 @@ public class CartController {
     private CartMapper cartMapper;
 
     @PostMapping
-    public Cart createEmptyCart() {
-        return new Cart();
+    public void createEmptyCart() {
+        cartService.save(new Cart());
     }
 
     @GetMapping
