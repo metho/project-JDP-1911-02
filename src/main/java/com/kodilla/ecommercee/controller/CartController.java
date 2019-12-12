@@ -27,7 +27,7 @@ public class CartController {
         return cart.getId();
     }
 
-    @GetMapping
+    @GetMapping("/{cartId}")
     public CartDto getCartById(@RequestParam Long cartId) {
         return cartMapper.mapToCartDto(
                 Objects.requireNonNull(
