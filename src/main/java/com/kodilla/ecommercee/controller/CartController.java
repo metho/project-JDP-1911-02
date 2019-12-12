@@ -20,9 +20,11 @@ public class CartController {
     @Autowired
     private CartMapper cartMapper;
 
-    @PostMapping
-    public void createEmptyCart() {
-        cartService.save(new Cart());
+    @GetMapping
+    public Long createEmptyCart() {
+        Cart cart = new Cart();
+        cartService.save(cart);
+        return cart.getId();
     }
 
     @GetMapping
