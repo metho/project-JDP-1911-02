@@ -7,13 +7,7 @@ import com.kodilla.ecommercee.service.CartService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
@@ -26,14 +20,12 @@ public class CartController {
     @Autowired
     private CartMapper cartMapper;
 
-    @GetMapping
-    public Long createEmptyCart() {
-        Cart cart = new Cart();
-        cartService.save(cart);
-        return cart.getId();
+    @PostMapping
+    public void createEmptyCart() {
+        cartService.save(new Cart());
     }
 
-    @GetMapping("/{cartId}")
+    @GetMapping
     public CartDto getCartById(@RequestParam Long cartId) {
         return cartMapper.mapToCartDto(
                 Objects.requireNonNull(
