@@ -7,15 +7,17 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Component
 public class ProductMapper {
 
     public Product mapToProduct(final ProductDto productDto) {
-        return new Product(productDto.getId(),
-                productDto.getName(),
-                productDto.getPrice(),
-                productDto.getQuantity()
-        );
+
+        Product product = new Product(productDto.getName(),
+                productDto.getPrice(), productDto.getQuantity());
+        product.setId(productDto.getId());
+        return product;
+
     }
 
     public ProductDto mapToProductDto(final Product product) {
@@ -24,6 +26,7 @@ public class ProductMapper {
                 product.getPrice(),
                 product.getQuantity()
         );
+
     }
 
     public List<ProductDto> mapToProductDtoList(final List<Product> productList) {
