@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +27,7 @@ public class User {
     private String password;
     private String address;
     private Integer postcode;
+    private boolean blocked;
 
     public User(String username, String password, String address, Integer postcode) {
         this.username = username;
@@ -38,6 +39,13 @@ public class User {
     @OneToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
+
+    @OneToMany (
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private List<UserToken> tokenList;
 
     @OneToMany (
             mappedBy = "user",

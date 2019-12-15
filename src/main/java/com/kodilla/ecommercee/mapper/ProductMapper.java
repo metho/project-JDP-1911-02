@@ -12,16 +12,21 @@ import java.util.stream.Collectors;
 public class ProductMapper {
 
     public Product mapToProduct(final ProductDto productDto) {
+
         Product product = new Product(productDto.getName(),
-                productDto.getPrice());
+                productDto.getPrice(), productDto.getQuantity());
         product.setId(productDto.getId());
         return product;
+
     }
 
     public ProductDto mapToProductDto(final Product product) {
         return new ProductDto(product.getId(),
                 product.getName(),
-                product.getPrice());
+                product.getPrice(),
+                product.getQuantity()
+        );
+
     }
 
     public List<ProductDto> mapToProductDtoList(final List<Product> productList) {
