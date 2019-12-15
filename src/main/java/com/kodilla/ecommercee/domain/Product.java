@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
+
 @Setter
 @Getter
 @Entity
@@ -28,12 +28,16 @@ public class Product {
     @Column
     private int price;
 
+    public Product(String name, int price) {
+        this.name = name;
+        this.price = price;
+    }
+
     @ManyToMany
     @JoinTable(
             name = "Join_Product_ProductGroup",
             joinColumns = @JoinColumn(name = "PRODUCT_ID"),
-            inverseJoinColumns = @JoinColumn(name = "GROUPENTITY_ID")
-    )
+            inverseJoinColumns = @JoinColumn(name = "GROUPENTITY_ID"))
     private List<GroupEntity> productGroups = new ArrayList<>();
 
 }
