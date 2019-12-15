@@ -33,7 +33,7 @@ public class Product {
     public Product(String name, int price, int quantity) {
         this.name = name;
         this.price = price;
-        this.price = price;
+        this.quantity=quantity;
     }
 
     @ManyToMany
